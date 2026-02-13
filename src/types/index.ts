@@ -39,4 +39,4 @@ export interface EditorState {
   layout: LayoutType
 }
 
-export type LayoutType = 'default' | 'elegant' | 'modern' | 'classic' | 'minimal' | 'magazine' | 'news' | 'card'
+export type LayoutType = 'default' | 'elegant' | 'modern' | 'classic' | 'minimal' | 'tech' | 'nature' | 'night' | 'royal' | 'playful' | 'official' | 'zen'

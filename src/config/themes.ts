@@ -14,32 +14,52 @@ export const layoutConfigs = {
   modern: {
     id: 'modern',
     name: '现代布局',
-    description: '大标题背景，时尚简约',
+    description: '渐变大标题，时尚简约',
   },
   classic: {
     id: 'classic',
     name: '经典布局',
-    description: '传统报纸风格，端庄大气',
+    description: '传统报纸风格，首行缩进',
   },
   minimal: {
     id: 'minimal',
     name: '极简布局',
     description: '无装饰留白，极简主义',
   },
-  magazine: {
-    id: 'magazine',
-    name: '杂志布局',
-    description: '大号首字母，杂志风格',
+  tech: {
+    id: 'tech',
+    name: '科技布局',
+    description: '代码风格，深色元素',
   },
-  news: {
-    id: 'news',
-    name: '新闻布局',
-    description: '分段标题，新闻报道风格',
+  nature: {
+    id: 'nature',
+    name: '自然布局',
+    description: '绿色清新，舒适自然',
   },
-  card: {
-    id: 'card',
-    name: '卡片布局',
-    description: '内容卡片化，信息模块化',
+  night: {
+    id: 'night',
+    name: '夜间布局',
+    description: '深色背景，护眼模式',
+  },
+  royal: {
+    id: 'royal',
+    name: '皇家布局',
+    description: '金色装饰，端庄大气',
+  },
+  playful: {
+    id: 'playful',
+    name: '活泼布局',
+    description: '彩色点缀，生动有趣',
+  },
+  official: {
+    id: 'official',
+    name: '官方布局',
+    description: '正式严肃，蓝色主调',
+  },
+  zen: {
+    id: 'zen',
+    name: '禅意布局',
+    description: '简约留白，宁静致远',
   },
 }
 

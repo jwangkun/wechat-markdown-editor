@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ThemeConfig, FontSize, BackgroundType } from '@/types'
-import { getAllThemes, builtInThemes, generateTemplateTheme } from '@/config/themes'
+import { ThemeConfig, FontSize, BackgroundType, LayoutType } from '@/types'
+import { getAllThemes, builtInThemes, generateTemplateTheme, layoutConfigs } from '@/config/themes'
 import { parseMarkdown } from '@/utils/markdown-parser'
 import { generateThemeCSS } from '@/utils/theme-css'
 
@@ -62,6 +62,7 @@ export default function Editor() {
   const [selectedTheme, setSelectedTheme] = useState('default')
   const [fontSize, setFontSize] = useState<FontSize>('medium')
   const [backgroundType, setBackgroundType] = useState<BackgroundType>('default')
+  const [selectedLayout, setSelectedLayout] = useState<LayoutType>('default')
   const [showThemePanel, setShowThemePanel] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
 
@@ -70,7 +71,7 @@ export default function Editor() {
 
   useEffect(() => {
     if (previewRef.current) {
-      const css = generateThemeCSS(currentTheme, fontSize, backgroundType)
+      const css = generateThemeCSS(currentTheme, fontSize, backgroundType, selectedLayout)
       let styleEl = document.getElementById('theme-styles')
       if (!styleEl) {
         styleEl = document.createElement('style')
@@ -79,7 +80,7 @@ export default function Editor() {
       }
       styleEl.textContent = css
     }
-  }, [currentTheme, fontSize, backgroundType])
+  }, [currentTheme, fontSize, backgroundType, selectedLayout])
 
   const handleCopy = async () => {
     if (previewRef.current) {
@@ -129,6 +130,18 @@ export default function Editor() {
             </select>
             
             <select
+              value={selectedLayout}
+              onChange={(e) => setSelectedLayout(e.target.value as LayoutType)}
+              className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {Object.values(layoutConfigs).map((layout) => (
+                <option key={layout.id} value={layout.id}>
+                  {layout.name}
+                </option>
+              ))}
+            </select>
+            
+            <select
               value={backgroundType}
               onChange={(e) => setBackgroundType(e.target.value as BackgroundType)}
               className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -158,6 +171,14 @@ export default function Editor() {
       {showThemePanel && (
         <div className="bg-white border-b border-gray-200 px-6 py-4">
           <div className="max-w-7xl mx-auto">
+            <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+              <div className="text-sm">
+                <span className="font-medium text-gray-700">当前布局：</span>
+                <span className="text-blue-600">{layoutConfigs[selectedLayout as keyof typeof layoutConfigs]?.name}</span>
+                <span className="text-gray-500 ml-2">- {layoutConfigs[selectedLayout as keyof typeof layoutConfigs]?.description}</span>
+              </div>
+            </div>
+
             <h3 className="text-sm font-medium text-gray-700 mb-3">内置主题</h3>
             <div className="grid grid-cols-6 gap-2 mb-4">
               {Object.values(builtInThemes).map((theme) => (

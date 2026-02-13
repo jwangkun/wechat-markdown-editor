@@ -1,11 +1,55 @@
 import { ThemeConfig } from '@/types'
 
+export const layoutConfigs = {
+  default: {
+    id: 'default',
+    name: '默认布局',
+    description: '标准微信排版，简洁清晰',
+  },
+  elegant: {
+    id: 'elegant',
+    name: '雅致布局',
+    description: '左侧边框装饰，精致优雅',
+  },
+  modern: {
+    id: 'modern',
+    name: '现代布局',
+    description: '大标题背景，时尚简约',
+  },
+  classic: {
+    id: 'classic',
+    name: '经典布局',
+    description: '传统报纸风格，端庄大气',
+  },
+  minimal: {
+    id: 'minimal',
+    name: '极简布局',
+    description: '无装饰留白，极简主义',
+  },
+  magazine: {
+    id: 'magazine',
+    name: '杂志布局',
+    description: '大号首字母，杂志风格',
+  },
+  news: {
+    id: 'news',
+    name: '新闻布局',
+    description: '分段标题，新闻报道风格',
+  },
+  card: {
+    id: 'card',
+    name: '卡片布局',
+    description: '内容卡片化，信息模块化',
+  },
+}
+
 export const builtInThemes: Record<string, ThemeConfig> = {
   default: {
     id: 'default',
     name: '默认主题',
     type: 'built-in',
     description: '微信经典风格，温暖舒适',
+    layout: 'default',
     colors: {
       primary: '#07c160',
       secondary: '#576b95',
@@ -27,6 +71,7 @@ export const builtInThemes: Record<string, ThemeConfig> = {
     name: '字节跳动',
     type: 'built-in',
     description: '科技现代风格，简洁利落',
+    layout: 'default',
     colors: {
       primary: '#1890ff',
       secondary: '#52c41a',
@@ -48,6 +93,7 @@ export const builtInThemes: Record<string, ThemeConfig> = {
     name: '苹果风格',
     type: 'built-in',
     description: '视觉渐变风格，精致优雅',
+    layout: 'default',
     colors: {
       primary: '#0071e3',
       secondary: '#0066cc',
@@ -69,6 +115,7 @@ export const builtInThemes: Record<string, ThemeConfig> = {
     name: '活力运动',
     type: 'built-in',
     description: '活力动感风格，充满能量',
+    layout: 'default',
     colors: {
       primary: '#ff6b35',
       secondary: '#f7931e',
@@ -90,6 +137,7 @@ export const builtInThemes: Record<string, ThemeConfig> = {
     name: '中国风',
     type: 'built-in',
     description: '古典雅致风格，书卷气息',
+    layout: 'default',
     colors: {
       primary: '#c23531',
       secondary: '#ca8a04',
@@ -111,6 +159,7 @@ export const builtInThemes: Record<string, ThemeConfig> = {
     name: '赛博朋克',
     type: 'built-in',
     description: '未来科技风格，霓虹光影',
+    layout: 'default',
     colors: {
       primary: '#00f5ff',
       secondary: '#ff00ff',
@@ -171,6 +220,7 @@ export function generateTemplateTheme(
     name: `${templateInfo.name}${toneInfo.name}`,
     type: 'template',
     description: `${templateInfo.description}，${toneInfo.name}配色`,
+    layout: 'default',
     colors: {
       primary: toneInfo.color,
       secondary: adjustColor(toneInfo.color, -20),
@@ -199,7 +249,10 @@ function adjustColor(color: string, amount: number): string {
 }
 
 export function getAllThemes(): ThemeConfig[] {
-  const themes = Object.values(builtInThemes)
+  const themes = Object.values(builtInThemes).map((theme) => ({
+    ...theme,
+    layout: 'default',
+  }))
 
   Object.keys(styleTemplates).forEach((template) => {
     Object.keys(colorTones).forEach((tone) => {

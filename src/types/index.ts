@@ -13,6 +13,7 @@ export interface ThemeConfig {
   name: string
   type: 'built-in' | 'template'
   description: string
+  layout: string
   colors: {
     primary: string
     secondary: string
@@ -35,4 +36,7 @@ export interface EditorState {
   theme: string
   fontSize: FontSize
   backgroundType: BackgroundType
+  layout: LayoutType
 }
+
+export type LayoutType = 'default' | 'elegant' | 'modern' | 'classic' | 'minimal' | 'magazine' | 'news' | 'card'

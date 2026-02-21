@@ -11,8 +11,8 @@ export function parseExtendedMarkdown(content: string): string {
   processed = processed.replace(
     /:::gallery\[([^\]]*)\]([\s\S]*?):::/g,
     (match, title, images) => {
-      const imageList = images.trim().split('\n').filter((line) => line.trim())
-      const imageTags = imageList.map((src) => `<img src="${src.trim()}" alt="${title}" />`).join('')
+      const imageList = images.trim().split('\n').filter((line: string) => line.trim())
+      const imageTags = imageList.map((src: string) => `<img src="${src.trim()}" alt="${title}" />`).join('')
       return `<div class="gallery">${imageTags}</div>`
     }
   )
@@ -27,10 +27,10 @@ export function parseExtendedMarkdown(content: string): string {
   processed = processed.replace(
     /:::dialogue([\s\S]*?):::/g,
     (match, content) => {
-      const lines = content.trim().split('\n').filter((line) => line.trim())
+      const lines = content.trim().split('\n').filter((line: string) => line.trim())
       let html = '<div class="dialogue">'
       
-      lines.forEach((line) => {
+      lines.forEach((line: string) => {
         const userMatch = line.match(/^用户[：:]\s*(.*)/)
         const assistantMatch = line.match(/^(?:AI|助手)[：:]\s*(.*)/)
         

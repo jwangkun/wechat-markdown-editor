@@ -1,4 +1,4 @@
-export type BuiltInTheme = 'default' | 'bytedance' | 'apple' | 'sports' | 'chinese' | 'cyber'
+export type BuiltInTheme = 'default' | 'bytedance' | 'apple' | 'sports' | 'chinese' | 'cyber' | 'moyuGreen' | 'redWhite' | 'graphiteMinimal' | 'zenWhitespace' | 'moyuTicket' | 'oliveJournal'
 
 export type StyleTemplate = 'minimal' | 'focus' | 'elegant' | 'bold'
 
@@ -39,4 +39,4 @@ export interface EditorState {
   layout: LayoutType
 }
 
-export type LayoutType = 'default' | 'elegant' | 'modern' | 'classic' | 'minimal' | 'tech' | 'nature' | 'night' | 'royal' | 'playful' | 'official' | 'zen'
+export type LayoutType = 'default' | 'elegant' | 'modern' | 'classic' | 'minimal' | 'tech' | 'nature' | 'night' | 'royal' | 'playful' | 'official' | 'zen' | 'magazine' | 'editorial' | 'graphite' | 'ticket' | 'journal'
